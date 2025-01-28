@@ -71,7 +71,7 @@ export default function RegisterUser() {
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(
     null
   );
-
+  const [loading, setLoading] = useState<Boolean>(false);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -118,6 +118,7 @@ export default function RegisterUser() {
     event.preventDefault();
 
     try {
+      setLoading(true);
       const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -155,6 +156,8 @@ export default function RegisterUser() {
       }
     } catch (error) {
       setSubmissionMessage("An error occurred while submitting the form.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -302,6 +305,7 @@ export default function RegisterUser() {
         <TextInput
           label="Birth Date (YYYY-MM-DD)"
           name="birthDate"
+          type="date"
           value={formData.birthDate}
           onChange={handleInputChange}
           placeholder="1990-01-01"
@@ -338,6 +342,7 @@ export default function RegisterUser() {
             variant="filled"
             color="blue"
             className="w-full"
+            loading
           >
             Register
           </Button>
