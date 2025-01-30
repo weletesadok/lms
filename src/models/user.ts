@@ -19,9 +19,9 @@ enum DisabilityStatus {
   Other = "other",
 }
 
-interface IUser extends Document {
+export interface IUser extends Document {
   name: {
-    firstName: String;
+    firstName: string;
     fatherName: string;
     grandFatherName: string;
     motherName: string;

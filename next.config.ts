@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  experimental: {
+    dynamicIO: true,
+    useCache: true,
+  },
 };
 
 export default nextConfig;
